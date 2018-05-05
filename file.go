@@ -1,4 +1,4 @@
-package hcris-tools
+package hcris
 
 import (
 	"archive/zip"

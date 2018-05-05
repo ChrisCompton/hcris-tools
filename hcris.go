@@ -1,4 +1,4 @@
-package hcris-tools
+package hcris
 
 import (
 	"archive/zip"
@@ -9,9 +9,9 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
-	"strconv"
 
 	"github.com/yhat/scrape"
 	"golang.org/x/net/html"
@@ -237,7 +237,7 @@ func CheckExtractFiles() error {
 	directory := GetOutputFolder()
 
 	for i := start; i <= end; i++ {
-		if (i <= 2011) {
+		if i <= 2011 {
 			if _, err := os.Stat(directory + "/hosp_" + strconv.Itoa(i) + "_ALPHA.CSV"); err == nil {
 				Pass(fmt.Sprintf("Exists %s/hosp_%d_ALPHA.CSV", directory, i))
 			} else {
@@ -261,26 +261,26 @@ func CheckExtractFiles() error {
 			} else {
 				Fail(fmt.Sprintf("Does NOT Exist %s/hosp_%d_ROLLUP.CSV", directory, i))
 			}
-		}		
+		}
 
-		if (i >= 2010) {
+		if i >= 2010 {
 			if _, err := os.Stat(directory + "/hosp10_" + strconv.Itoa(i) + "_ALPHA.CSV"); err == nil {
 				Pass(fmt.Sprintf("Exists %s/hosp10_%d_ALPHA.CSV", directory, i))
 			} else {
 				Fail(fmt.Sprintf("Does NOT Exist %s/hosp10_%d_ALPHA.CSV", directory, i))
 			}
-	
+
 			if _, err := os.Stat(directory + "/hosp10_" + strconv.Itoa(i) + "_NMRC.CSV"); err == nil {
 				Pass(fmt.Sprintf("Exists %s/hosp10_%d_NMRC.CSV", directory, i))
 			} else {
 				Fail(fmt.Sprintf("Does NOT Exist %s/hosp10_%d_NMRC.CSV", directory, i))
 			}
-	
+
 			if _, err := os.Stat(directory + "/hosp10_" + strconv.Itoa(i) + "_RPT.CSV"); err == nil {
 				Pass(fmt.Sprintf("Exists %s/hosp10_%d_RPT.CSV", directory, i))
 			} else {
 				Fail(fmt.Sprintf("Does NOT Exist %s/hosp10_%d_RPT.CSV", directory, i))
-			}			
+			}
 		}
 	}
 
