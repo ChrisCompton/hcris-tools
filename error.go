@@ -11,6 +11,7 @@ import (
 	"github.com/skratchdot/open-golang/open"
 )
 
+// AppMsg holds a formatted error response.
 type AppMsg struct {
 	Severity string
 	Source   string
@@ -19,10 +20,13 @@ type AppMsg struct {
 	Error    error
 }
 
+// Check handles checking err in a standard way.
+// It triggers a generic message if an error is present.
 func Check(err error) {
 	checkErr(err)
 }
 
+// Debug prints out generic messages if the configuration turns Debug on.
 func Debug(msg string) {
 	if AppConfig.Settings.Debug == true {
 		t := time.Now()

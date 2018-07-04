@@ -6,8 +6,11 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
+// AppConfig holds the configuration from the loaded yaml file.
 var AppConfig Config
 
+// Config is built from the yaml configuration file.
+// It provides all configuration values for the application.
 type Config struct {
 	Source struct {
 		Download  bool   `yaml:"download"`
@@ -37,6 +40,8 @@ type Config struct {
 	} `yaml:"settings"`
 }
 
+// LoadConfig expects a file in yaml format.
+// It returns any error encountered reading the file.
 func LoadConfig(file string) error {
 	configFile, err := ioutil.ReadFile(file)
 	Check(err)
